@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JS Wedding Planners</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript">
+        var map = null;
+
+        function GetMap() {
+            document.getElementById("frm_id").reset();
+            map = new Microsoft.Maps.Map(document.getElementById('bing_map'), {
+                credentials: 'AkJ0Anare5ce-rN4Jy22EaP-sFFGNTYOrijdAOYuNGXyfOkrpsCXUXyJr9jOjNie'
+            });
+            GetLocation();
+        }
+
+        function GetLocation() {
+            //check if location api supported
+            if (!!navigator.geolocation) {
+
+                //request current location
+                navigator.geolocation.getCurrentPosition(UpdateLocation, HandleErrors);
+            }
+        }
+
+        function UpdateLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            //move map to new location and zoom in
+            map.setView({
+                center: {
+                    latitude: latitude,
+                    longitude: longitude
+                },
+                zoom: 18,
+                mapTypeId: Microsoft.Maps.MapTypeId.aerial
+            });
+        }
+
+        function HandleErrors(error) {
+            //handle geolocation errors and alert user
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    //alert("Did not share geolocation data!");
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    //alert("Could not detect current position!");
+                    break;
+
+                case error.TIMEOUT:
+                    //alert("Retrieving position timed out!");
+                    break;
+
+                default:
+                    //alert("Unknown error!");
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body onload="GetMap();">
+    <div class="grid">
+        <header class="header_nav">
+            <section class="grid_wrap">
+                <figure class="frontPanel marginBorder">
+                    <img class="figure-img" src="assets/images/contact.jpeg" alt="Wedding Services">
+                </figure>
+                <figure class="backPanel panel_button">
+                    <a href="packages.html">
+                        <img class="figure_img" src="assets/images/buttons/packages_small_L.jpg" alt="To Packages Page">
+                    </a>
+                </figure>
+                <figure class="forwardPanel panel_button">
+                    <a href="index.html">
+                        <img class="figure_img" src="assets/images/buttons/home_small_R.jpg" alt="To Home Page">
+                    </a>
+                </figure>
+            </section>
+        </header>
+        <nav class="main_nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li class="selected"><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <section class="normal_content">
+            <div class="contact_details">
+                <div class="form">
+                    <fieldset>
+                        <legend>Our Contact Details</legend>
+                        <p>We look forward to connecting with you! Please contact us for a complimentary consultation and portfolio presentation. Please complete the form below, or contact us at:</p>
+                        <ul>
+                            <li>Address:
+                                999999 Uk's Rd, Street 111
+                                London, NN 92122<br><br><b>Opening Hours:</b></li>
+                            <table>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Interval</th>
+                                </tr>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>9am - 5pm</td>
+                                </tr>
+                                <tr>
+                                    <th>Sunday</th>
+                                    <th>Closed</th>
+                                </tr>
+                            </table>
+                            <li>Email: info@jsweddingplanners.com</li>
+                            <li>Phone: 99999-99999-99999</li>
+                        </ul>
+                    </fieldset>
+                    <form id="frm_id" method="POST" action="https://jsonplaceholder.typicode.com/posts">
+                        <fieldset>
+                            <legend>Contact Us</legend>
+                            <p><label for="firstName">First name: </label><input id="firstName" type="text" name="fname" maxlength="30" required autofocus pattern="[a-zA-z]{1,}" title="Please enter your first name!" placeholder="*"></p>
+                            <p><label for="lastName">Last name: </label><input id="lastName" type="text" name="lname" maxlength="30" required autofocus pattern="[a-zA-z]{1,}" title="Please enter your last name!" placeholder="*"></p>
+                            <p><label for="gender">Gender: </label><select id="gender" name="genderName">
+                                    <option value="Female" selected>Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Other">Other</option>
+                                </select></p>
+                            <p><label for="email">Email:</label><input type="text" name="email" maxlength="30" required autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please enter a valid email address!" placeholder="*"></p>
+                            <p><label for="tel">Telephone Number:</label><input type="text" name="telNo" required autofocus pattern="[0-9]{8,20}" title="Please enter a valid phone number!" placeholder="*"></p>
+                            <p><label for="msg"></label><textarea id="msg" name="message" rows="20" maxlength="500" required autofocus placeholder="Type Your Message Here! *"></textarea></p>
+                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                            <p><button>Submit</button></p>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="map" id="bing_map">
+            </div>
+        </section>
+        <footer class="footer">
+            <small>&copy; Copyright 2018, Cosmin Elvis Anita</small>
+        </footer>
+    </div>
+</body>
+
+</html>
