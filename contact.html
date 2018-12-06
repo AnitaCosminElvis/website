@@ -10,6 +10,24 @@
     <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
     <script type="text/javascript">
         var map = null;
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            whenScrollHappens()
+        };
+
+        function whenScrollHappens() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("back_to_top").style.display = "block";
+            } else {
+                document.getElementById("back_to_top").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function goToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
 
         function GetMap() {
             document.getElementById("frm_id").reset();
@@ -64,6 +82,16 @@
             }
         }
 
+        // Shows or hides the menu on mobile resolutions        
+        function showHideMenu() {
+            var checkBox = document.getElementById("menu_btn_id");
+            var menu = document.getElementById("menu_id");
+            if (checkBox.checked == true) {
+                menu.className = " menu_show";
+            } else {
+                menu.className = " menu_hide";
+            }
+        }
     </script>
 </head>
 
@@ -87,13 +115,18 @@
             </section>
         </header>
         <nav class="main_nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="packages.html">Packages</a></li>
-                <li class="selected"><a href="contact.html">Contact</a></li>
-            </ul>
+            <section class="menu_btn_wrap menu_btn_img_5">
+                <input id="menu_btn_id" type="checkbox" onclick="showHideMenu()">
+            </section>
+            <nav id="menu_id">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li class="selected"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </nav>
         <section class="normal_content">
             <div class="contact_details">
@@ -169,6 +202,7 @@
             <small>&copy; Copyright 2018, Cosmin Elvis Anita</small>
         </footer>
     </div>
+    <button onclick="goToTop()" id="back_to_top" title="Go To Top">Go Top</button>
 </body>
 
 </html>
