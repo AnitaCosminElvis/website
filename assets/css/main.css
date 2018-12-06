@@ -291,6 +291,13 @@ h9 {
     justify-content: center;
 }
 
+.form {
+    display: table;
+    margin: 1em;
+    width: 50%;
+    vertical-align: center;
+}
+
 .form p,
 button {
     text-align: center;
@@ -302,13 +309,6 @@ button {
 
 .form th {
     text-align: left;
-}
-
-.form {
-    display: table;
-    margin: 1em;
-    width: 50%;
-    vertical-align: center;
 }
 
 .form p {
@@ -399,11 +399,11 @@ li {
         grid-column: 16/25;
         grid-row: 8;
     }
-    
-    .main_nav ul{
+
+    .main_nav ul {
         display: none;
     }
-    
+
     .menu_btn_wrap {
         display: block;
         float: left;
@@ -412,53 +412,52 @@ li {
         width: 30px;
         height: 3em;
     }
-    
-    .menu_btn_wrap:hover {
-         border-right:1px solid firebrick;
-         border-bottom:1px solid firebrick;
-    }
-    
-    .menu_btn_img_1{
+
+    .menu_btn_img_1 {
         background-image: url('/assets/images/buttons/menu_btn_1_30_30.png');
         background-size: 100% 100%;
     }
-    .menu_btn_img_2{
+
+    .menu_btn_img_2 {
         background-image: url('/assets/images/buttons/menu_btn_2_30_30.png');
         background-size: 100% 100%;
     }
-    .menu_btn_img_3{
+
+    .menu_btn_img_3 {
         background-image: url('/assets/images/buttons/menu_btn_3_30_30.png');
         background-size: 100% 100%;
     }
-    .menu_btn_img_4{
+
+    .menu_btn_img_4 {
         background-image: url('/assets/images/buttons/menu_btn_4_30_30.png');
         background-size: 100% 100%;
     }
-    .menu_btn_img_5{
+
+    .menu_btn_img_5 {
         background-image: url('/assets/images/buttons/menu_btn_5_30_30.png');
         background-size: 100% 100%;
     }
-    
-    #menu_btn_id{
+
+    #menu_btn_id {
         opacity: 0;
         bottom: 0;
         margin: 0;
         width: 100%;
         height: 100%;
     }
-    
-    .menu_show{
-        display:block;
+
+    .menu_show {
+        display: block;
     }
-    
-    .menu_show ul{
+
+    .menu_show ul {
         display: flow-root;
     }
-    
-    .menu_hide{
+
+    .menu_hide {
         display: none;
     }
-    
+
     .content {
         grid-template-columns: 1em 1fr repeat(2, 1em) 1em repeat(2, 1em) 1fr 1em;
         grid-template-rows: minmax(min-content, max-content) minmax(min-content, 0.5fr) minmax(min-content, max-content);
@@ -520,6 +519,10 @@ li {
         grid-gap: 1em;
     }
 
+    .form {
+        width: min-content;
+    }
+
     #back_to_top {
         width: 2em;
         height: 3em;
@@ -539,8 +542,8 @@ li {
         grid-column: 18/25;
         grid-row: 8;
     }
-    
-    
+
+
     .box_title h1 {
         text-align: center;
         font-family: scriptina;
