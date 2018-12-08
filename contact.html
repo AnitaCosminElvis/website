@@ -10,6 +10,8 @@
     <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
     <script type="text/javascript">
         var map = null;
+        var credentials = "AkJ0Anare5ce-rN4Jy22EaP-sFFGNTYOrijdAOYuNGXyfOkrpsCXUXyJr9jOjNie";
+
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function() {
             whenScrollHappens()
@@ -29,59 +31,6 @@
             document.documentElement.scrollTop = 0;
         }
 
-        function GetMap() {
-            document.getElementById("frm_id").reset();
-            map = new Microsoft.Maps.Map(document.getElementById('bing_map'), {
-                credentials: 'AkJ0Anare5ce-rN4Jy22EaP-sFFGNTYOrijdAOYuNGXyfOkrpsCXUXyJr9jOjNie'
-            });
-            GetLocation();
-        }
-
-        function GetLocation() {
-            //check if location api supported
-            if (!!navigator.geolocation) {
-
-                //request current location
-                navigator.geolocation.getCurrentPosition(UpdateLocation, HandleErrors);
-            }
-        }
-
-        function UpdateLocation(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-
-            //move map to new location and zoom in
-            map.setView({
-                center: {
-                    latitude: latitude,
-                    longitude: longitude
-                },
-                zoom: 18,
-                mapTypeId: Microsoft.Maps.MapTypeId.aerial
-            });
-        }
-
-        function HandleErrors(error) {
-            //handle geolocation errors and alert user
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    //alert("Did not share geolocation data!");
-                    break;
-
-                case error.POSITION_UNAVAILABLE:
-                    //alert("Could not detect current position!");
-                    break;
-
-                case error.TIMEOUT:
-                    //alert("Retrieving position timed out!");
-                    break;
-
-                default:
-                    //alert("Unknown error!");
-                    break;
-            }
-        }
-
         // Shows or hides the menu on mobile resolutions        
         function showHideMenu() {
             var checkBox = document.getElementById("menu_btn_id");
@@ -92,6 +41,63 @@
                 menu.className = " menu_hide";
             }
         }
+
+
+        function GetMap() {
+
+            // Define the address on which to centre the map
+            var addressLine = ""; // Street Address
+            var locality = "London"; // City or town name
+            var adminDistrict = ""; // County
+            var country = "UK"; // Country, obviously
+            var postalCode = "EC1R4TF" //Postcode
+
+            // Construct a request to the REST geocode service
+            var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations" +
+                "?countryRegion=" + country +
+                "&addressLine=" + addressLine +
+                "&locality=" + locality +
+                "&adminDistrict=" + adminDistrict +
+                "&postalCode=" + postalCode +
+                "&key=" + credentials +
+                "&jsonp=GeocodeCallback"; // This function will be called after the geocode service returns its results
+
+            // Call the service
+            CallRestService(geocodeRequest);
+        }
+
+        function GeocodeCallback(result) {
+            // Check that we have a valid response
+            if (result && result.resourceSets && result.resourceSets.length > 0 && result.resourceSets[0].resources && result.resourceSets[0].resources.length > 0) {
+
+                // Create a Location based on the geocoded coordinates
+                var coords = result.resourceSets[0].resources[0].point.coordinates;
+                centerPoint = new Microsoft.Maps.Location(coords[0], coords[1]);
+
+                // Create a map centred on the location
+                map = new Microsoft.Maps.Map(document.getElementById("bing_map"), {
+                    credentials: credentials,
+                    center: centerPoint,
+                    mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                    zoom: 18
+                });
+
+                // Add a pushpin as well
+                var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
+                map.entities.push(pushpin);
+            }
+        }
+
+        // This is a generic function to call a REST service and insert the JSON
+        // results into the head of the document
+        function CallRestService(request) {
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute("src", request);
+            var dochead = document.getElementsByTagName("head").item(0);
+            dochead.appendChild(script);
+        }
+
     </script>
 </head>
 
@@ -122,8 +128,8 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="services.html">Services</a></li>
                     <li><a href="packages.html">Packages</a></li>
+                    <li><a href="services.html">Services</a></li>
                     <li class="selected"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -189,13 +195,17 @@
                             <p><label for="email">Email:</label><input type="text" name="email" maxlength="30" required autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please enter a valid email address!" placeholder="*"></p>
                             <p><label for="tel">Telephone Number:</label><input type="text" name="telNo" required autofocus pattern="[0-9]{8,20}" title="Please enter a valid phone number!" placeholder="*"></p>
                             <p><label for="msg"></label><textarea id="msg" name="message" rows="20" maxlength="500" required autofocus placeholder="Type Your Message Here! *"></textarea></p>
-                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-                            <p><button>Submit</button></p>
+                            <p><button class="submit_button">Submit</button></p>
                         </fieldset>
                     </form>
                 </div>
             </div>
-            <div class="map" id="bing_map">
+            <div class="location_details">
+                <video src="/assets/video/dest_video_640_480.mp4" controls>
+                    Unfortunately your browser does not support HTML5 video.
+                </video>
+                <div class="map" id="bing_map">
+                </div>
             </div>
         </section>
         <footer class="footer">
