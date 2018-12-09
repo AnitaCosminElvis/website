@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Home</title>
     <link rel="stylesheet" href="assets/css/main.css">
-    <script type="text/javascript">
+    <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function() {
             whenScrollHappens()
@@ -26,14 +26,14 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
-        
+
         function showHideMenu() {
             var checkBox = document.getElementById("menu_btn_id");
             var menu = document.getElementById("menu_id");
             if (checkBox.checked == true) {
-                menu.className = " menu_show";
+                menu.className = "menu_show";
             } else {
-                menu.className = " menu_hide";
+                menu.className = "menu_hide";
             }
         }
     </script>
@@ -44,16 +44,16 @@
         <header class="header_nav">
             <section class="grid_wrap">
                 <figure class="frontPanel marginBorder">
-                    <img class="" src="assets/images/home.jpg" alt="Home Page">
+                    <img class="" src="assets/images/home.jpg" alt="Home Page" title="Home Page">
                 </figure>
                 <figure class="backPanel panel_button">
                     <a href="contact.html">
-                        <img class="" src="assets/images/buttons/contact_small_L.jpg" alt="To Contact Page">
+                        <img class="" src="assets/images/buttons/contact_small_L.jpg" alt="To Contact Page" title="To Contact Page">
                     </a>
                 </figure>
                 <figure class="forwardPanel panel_button">
                     <a href="portfolio.html">
-                        <img class="" src="assets/images/buttons/portfolio_small_R.jpg" alt="To Portfolio Page">
+                        <img class="" src="assets/images/buttons/portfolio_small_R.jpg" alt="To Portfolio Page" title="To Portfolio Page">
                     </a>
                 </figure>
             </section>
@@ -64,17 +64,17 @@
             </section>
             <nav id="menu_id">
                 <ul>
-                    <li class="selected"><a href="index.html">Home</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="selected"><a href="index.html" title="Home">Home</a></li>
+                    <li><a href="portfolio.html" title="Portfolio">Portfolio</a></li>
+                    <li><a href="packages.html" title="Packages">Packages</a></li>
+                    <li><a href="services.html" title="Services">Services</a></li>
+                    <li><a href="contact.html" title="Contact">Contact</a></li>
                 </ul>
             </nav>
         </nav>
-        <article class="content">
+        <main class="content">
             <figure class="box_img">
-                <img src="assets/images/wedding_planner.jpg" alt="">
+                <img src="assets/images/wedding_planner.jpg" alt="Weding Planner Work Space" title="Weding Planner Work Space">
             </figure>
             <section class="box_title">
                 <h1>JS Wedding Planners</h1>
@@ -96,7 +96,7 @@
                 <p>Here, in our portfolio, we are pleased to be able to share with you some highlights of recent projects that we have been honoured to work on.
                     The galleries demonstrate a real range of styles but all were impeccably planned and flawlessly executed.</p>
             </article>
-        </article>
+        </main>
         <footer class="footer">
             <small>&copy; Copyright 2018, Cosmin Elvis Anita</small>
         </footer>
