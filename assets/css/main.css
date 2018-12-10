@@ -1,7 +1,7 @@
 @import url('globals.css');
 
 
-.grid {
+.main_grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content min-content max-content 1em;
@@ -184,7 +184,7 @@
     grid-row: 12/23;
 }
 
-.box_text h2,
+.box_text h1,h2,
 h3,
 h4,
 h5,
@@ -243,7 +243,7 @@ h9 {
 .services_container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(16, min-content);
+    grid-template-rows: repeat(8, min-content);
 }
 
 .services_container article {
@@ -425,7 +425,11 @@ li {
     bottom: 3em;
     opacity: 0.7;
     text-align: center;
-    background-color: cadetblue
+    background-color: cadetblue;
+}
+
+#back_to_top p {
+    color:white
 }
 
 #back_to_top:hover {
@@ -554,8 +558,9 @@ li {
         width: 60%;
     }
 
-    .services_container h4 {
+    .services_container h1 {
         font-size: 1em;
+        font
     }
 
     .packages_grid {
@@ -638,7 +643,7 @@ li {
         width: 50%;
     }
 
-    .services_container h4 {
+    .services_container h1 {
         font-size: 1.5em;
     }
 

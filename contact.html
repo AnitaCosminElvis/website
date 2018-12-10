@@ -101,15 +101,15 @@
 </head>
 
 <body onload="GetMap();">
-    <div class="grid">
+    <div class="main_grid">
         <header class="header_nav">
-            <section class="grid_wrap">
+            <div class="grid_wrap">
                 <figure class="frontPanel marginBorder">
                     <img class="figure-img" src="assets/images/contact.jpeg" alt="Wedding Services" title="Wedding Services">
                 </figure>
                 <figure class="backPanel panel_button">
-                    <a href="packages.html">
-                        <img class="figure_img" src="assets/images/buttons/packages_small_L.jpg" alt="To Packages Page" title="To Packages Page">
+                    <a href="services.html">
+                        <img class="figure_img" src="assets/images/buttons/services_small_L.png" alt="To Services Page" title="To Services Page">
                     </a>
                 </figure>
                 <figure class="forwardPanel panel_button">
@@ -117,12 +117,12 @@
                         <img class="figure_img" src="assets/images/buttons/home_small_R.jpg" alt="To Home Page" title="To Home Page">
                     </a>
                 </figure>
-            </section>
+            </div>
         </header>
         <nav class="main_nav">
-            <section class="menu_btn_wrap menu_btn_img_5">
+            <div class="menu_btn_wrap menu_btn_img_5">
                 <input id="menu_btn_id" type="checkbox" onclick="showHideMenu()">
-            </section>
+            </div>
             <nav id="menu_id">
                 <ul>
                     <li><a href="index.html" title="Home">Home</a></li>
@@ -144,41 +144,41 @@
                                 999999 Uk's Rd, Street 111
                                 London, NN 92122<br><br><b>Opening Hours:</b></li>
                             <li>
-                            <table>
-                                <tr>
-                                    <th>Day</th>
-                                    <th>Interval</th>
-                                </tr>
-                                <tr>
-                                    <td>Monday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <td>Tuesday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <td>Wednesday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <td>Thursday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <td>Friday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <td>Saturday</td>
-                                    <td>9am - 5pm</td>
-                                </tr>
-                                <tr>
-                                    <th>Sunday</th>
-                                    <th>Closed</th>
-                                </tr>
-                            </table>
-                            <li>
+                                <table>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Interval</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Monday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuesday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wednesday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thursday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Friday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Saturday</td>
+                                        <td>9am - 5pm</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sunday</th>
+                                        <th>Closed</th>
+                                    </tr>
+                                </table>
+                            </li>
                             <li>Email: info@jsweddingplanners.com</li>
                             <li>Phone: 99999-99999-99999</li>
                         </ul>
@@ -194,7 +194,7 @@
                                     <option value="Other">Other</option>
                                 </select></p>
                             <p><label for="email">Email:</label><input id="email" type="text" name="email" maxlength="30" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please enter a valid email address!" placeholder="*"></p>
-                            <p><label for="tel">Telephone Number:</label><input id="tel" type="text" name="telNo" required pattern="[0-9]{8,20}" title="Please enter a valid phone number!" placeholder="*"></p>
+                            <p><label for="tel">Telephone Number:</label><input id="tel" type="text" name="telNo" max-length="20" required pattern="[0-9]{8,20}" title="Please enter a valid phone number!" placeholder="*"></p>
                             <p><label for="msg"></label><textarea id="msg" name="message" rows="20" maxlength="500" required placeholder="Type Your Message Here! *"></textarea></p>
                             <p><button class="submit_button">Submit</button></p>
                         </fieldset>
@@ -213,7 +213,7 @@
             <small>&copy; Copyright 2018, Cosmin Elvis Anita</small>
         </footer>
     </div>
-    <button onclick="goToTop()" id="back_to_top" title="Go To Top">Go Top</button>
+    <button onclick="goToTop()" id="back_to_top" title="Go To Top"><p>Go Top</p></button>
 </body>
 
 </html>
